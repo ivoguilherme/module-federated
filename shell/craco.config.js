@@ -1,3 +1,4 @@
+const { dependencies } = require("./package.json");
 const { ModuleFederationPlugin } = require("webpack").container;
 
 module.exports = {
@@ -9,10 +10,23 @@ module.exports = {
     plugins: [
       new ModuleFederationPlugin({
         name: "Shell",
-        remotes: {
-          menu: "menu@http://localhost:3002/menuRemoteEntry.js",
-        },
-        shared: ["react", "react-dom"],
+        // shared: {
+        //   ...dependencies,
+        //   react: {
+        //     singleton: true,
+        //     import: "react",
+        //     shareScope: "default",
+        //     requiredVersion: dependencies.react,
+        //   },
+        //   "react-dom": {
+        //     singleton: true,
+        //     requiredVersion: dependencies["react-dom"],
+        //   },
+        //   "react-router-dom": {
+        //     singleton: true,
+        //     requiredVersion: dependencies["react-router-dom"],
+        //   },
+        // },
       }),
     ],
   },

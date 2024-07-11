@@ -1,3 +1,4 @@
+const { dependencies } = require("./package.json");
 const { ModuleFederationPlugin } = require("webpack").container;
 
 module.exports = {
@@ -13,7 +14,23 @@ module.exports = {
         exposes: {
           "./Menu": "./src/App",
         },
-        shared: ["react", "react-dom"],
+        // shared: {
+        //   ...dependencies,
+        //   react: {
+        //     singleton: true,
+        //     import: "react",
+        //     shareScope: "default",
+        //     requiredVersion: dependencies.react,
+        //   },
+        //   "react-dom": {
+        //     singleton: true,
+        //     requiredVersion: dependencies["react-dom"],
+        //   },
+        //   "react-router-dom": {
+        //     singleton: true,
+        //     requiredVersion: dependencies["react-router-dom"],
+        //   },
+        // },
       }),
     ],
     configure: {
